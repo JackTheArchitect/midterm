@@ -64,7 +64,11 @@
 
                 <button class="btn btn-primary" type="submit">
                     <i class="fas fa-edit"></i> 
+                    <% if (title == "Edit Details") {  %>
+                    Edit 
+                    <% } else { %>
                     Submit
+                    <% } %>
                 </button>
                 
                 <a href="/book/list" class="btn btn-warning">

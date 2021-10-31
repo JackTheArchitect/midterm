@@ -57,7 +57,7 @@ module.exports.displayAddPage = (req, res, next) => {
 
     // Render the list page using book data
     res.render('book/add_edit', {
-        title: 'Add a new Item',
+        title: 'Add a new book',
         book: book
     })    
 
@@ -100,6 +100,7 @@ module.exports.processAddPage = (req, res, next) => {
 
 // Gets a book by id and renders the Edit form using the add_edit.ejs template
 module.exports.displayEditPage = (req, res, next) => {
+   
     let id = req.params.id;
 
 
@@ -139,7 +140,7 @@ module.exports.processEditPage = (req, res, next) => {
     });
     
 
-    // Mongoose Method to update a document
+    // Mongoose Method to update a document with Id and the data to be put
     Book.updateOne({_id: id}, editedBook, (err, Title) =>{
         if(err)
         {

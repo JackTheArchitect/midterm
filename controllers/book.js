@@ -126,7 +126,7 @@ module.exports.displayEditPage = (req, res, next) => {
 // Processes the data submitted from the Edit form to update a book
 module.exports.processEditPage = (req, res, next) => {
     
-    // let id = req.params.id
+    let id = req.params.id
     
     // Edited book into the varialbe "editedBook" with data posted by users that are included in req.body
     let editedBook = Book({
@@ -140,7 +140,7 @@ module.exports.processEditPage = (req, res, next) => {
     
 
     // Mongoose Method to update a document
-    Book.updateOne(editedBook, (err, Title) =>{
+    Book.updateOne({_id: id}, editedBook, (err, Title) =>{
         if(err)
         {
             console.log(err);

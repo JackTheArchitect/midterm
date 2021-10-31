@@ -1,3 +1,11 @@
+/**
+ * File name: app.js
+ * Author name: Jaeuk Kim
+ * Student ID: 301145308
+ * Web App Name: midterm-comp229-009-jaeuk
+ */
+
+// Moduels
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,7 +14,7 @@ var logger = require('morgan');
 
 //Database setup
 let mongoose = require('mongoose');
-let dbURI = require('./db');
+let dbURI = require('./db'); // My database on Atlas is added as an argument
 
 // Connect to the Database
 mongoose.connect(dbURI.AtlasDB);
@@ -17,6 +25,7 @@ mongoDB.once('open', ()=>{
   console.log('Connected to MongoDB...');
 });
 
+// Routers
 var indexRouter = require('../routes/index');
 var bookRouter = require('../routes/book');
 
@@ -25,6 +34,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
+
+// Modules are used by express app
 
 app.use(logger('dev'));
 app.use(express.json());

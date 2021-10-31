@@ -6,9 +6,8 @@
         <h1><%= title %></h1>
         <br>
         <div>
-            <!-- ------------------------ -->
-            <!-- Fix the ADD button below -->
-            <!-- ------------------------ -->
+            
+            <!-- ADD button below is fixed-->            
             <a href="/book/add" class="btn btn-primary align-self-end" role="button">
                 <i class="fas fa-plus-circle"></i> 
                 Add a new Item
@@ -42,20 +41,18 @@
                         <td class="text-center"><%= books[count].Genre %></td>
                         
                         <td class="text-center">
-                            <!-- <button> there is no point using button--> 
+                            <!-- Edit button is fixed--> 
                                 <a href="/book/edit/<%= books[count]._id %>" class="btn btn-primary btn-sm">
                                     <i class="fas fa-pencil-alt"></i>
                                     Edit
-                                </a>                                
-                            <!-- </button> -->
+                                </a>                                                            
                         </td>
                         <td class="text-center">                            
-                            <!-- <button>                                 -->
+                            <!-- Delete button below is fixed-->                                 -->
                                 <a href="/book/delete/<%= books[count]._id %>" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash-alt"></i>
                                     Delete
-                                </a>                                
-                            <!-- </button> -->
+                                </a>                                                            
                         </td>
                     </tr>
                 <% } %>

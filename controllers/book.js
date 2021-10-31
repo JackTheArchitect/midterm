@@ -1,3 +1,11 @@
+/**
+ * File name: book.js (controller)
+ * Author name: Jaeuk Kim
+ * Student ID: 301145308
+ * Web App Name: midterm-comp229-009-jaeuk
+ */
+
+
 // create a reference to the model
 let Book = require('../models/book');
 
@@ -44,8 +52,10 @@ module.exports.details = (req, res, next) => {
 // Renders the Add form using the add_edit.ejs template
 module.exports.displayAddPage = (req, res, next) => {
     
+    // Get the model data
     let book = Book();
 
+    // Render the list page using book data
     res.render('book/add_edit', {
         title: 'Add a new Item',
         book: book
@@ -56,6 +66,7 @@ module.exports.displayAddPage = (req, res, next) => {
 // Processes the data submitted from the Add form to create a new book
 module.exports.processAddPage = (req, res, next) => {
 
+    // A new book into the varialbe "new book" with data posted by users that are included in req.body
     let newBook = Book({
         _id: req.body.id,
         Title: req.body.Title,
@@ -65,6 +76,8 @@ module.exports.processAddPage = (req, res, next) => {
         Genre: req.body.Genre
     });
     
+
+    // Mongoose Method for creating a new document
     Book.create(newBook, (err, Title) =>{ //? what is this title?
         if(err)
         {
@@ -73,7 +86,7 @@ module.exports.processAddPage = (req, res, next) => {
         }
         else
         {
-            // refresh the book list
+            // refresh the book list            
             console.log(Title);
             res.redirect('/book/list');
         }
@@ -89,6 +102,8 @@ module.exports.processAddPage = (req, res, next) => {
 module.exports.displayEditPage = (req, res, next) => {
     let id = req.params.id;
 
+
+    // Mongoose Method for fdinging(getting) a data by id
     Book.findById(id, (err, bookToShow) => {
         if(err)
         {
@@ -111,8 +126,9 @@ module.exports.displayEditPage = (req, res, next) => {
 // Processes the data submitted from the Edit form to update a book
 module.exports.processEditPage = (req, res, next) => {
     
-    let id = req.params.id
+    // let id = req.params.id
     
+    // Edited book into the varialbe "editedBook" with data posted by users that are included in req.body
     let editedBook = Book({
         _id: req.body.id,
         Title: req.body.Title,
@@ -122,7 +138,9 @@ module.exports.processEditPage = (req, res, next) => {
         Genre: req.body.Genre
     });
     
-    Book.updateOne(editedBook, (err, Title) =>{ //? what is this title?
+
+    // Mongoose Method to update a document
+    Book.updateOne(editedBook, (err, Title) =>{
         if(err)
         {
             console.log(err);
@@ -131,7 +149,7 @@ module.exports.processEditPage = (req, res, next) => {
         else
         {
             // refresh the book list
-            console.log(Title);
+            // console.log(Title);
             res.redirect('/book/list');
         }
     });
@@ -142,7 +160,7 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
     
     // As the Mongoose document says remove() is deprecated 
-    // I am using findByIdAndDelete()
+    // I am using findByIdAndDelete() instead
     // reference: https://mongoosejs.com/docs/deprecations.html#remove
 
     let id = req.params.id
